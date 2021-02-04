@@ -7,8 +7,6 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
-#include <cstring>
-#include <array>
 using namespace std;
 
 struct {
