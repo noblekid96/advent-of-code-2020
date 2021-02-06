@@ -47,10 +47,6 @@ int main() {
         current_congruence += current_lcm;
     }
     current_lcm = current_lcm * bus_id;
-    // cout << "Current idx: " << i << '\n';
-    // cout << "Current Remainder: " << remainder << '\n';
-    // cout << "Current LCM: " << current_lcm << '\n';
-    // cout << "Current Congruent: " << current_congruence << '\n';
   }
   cout << "Target Time: " << current_congruence << '\n';
 }
