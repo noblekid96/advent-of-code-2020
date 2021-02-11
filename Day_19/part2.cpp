@@ -9,19 +9,13 @@
 #include <set>
 #include <unordered_map>
 #include <map>
-// #include <algorithm>
-// #include <regex>
-using namespace std;
 
-// #ifndef _GLIBCXX_REGEX_STATE_LIMIT
-// #define _GLIBCXX_REGEX_STATE_LIMIT 10000000
-// #endif
+using namespace std;
 
 typedef unsigned long long long_t;
 
 vector<string> valids(unordered_map<int,vector<vector<int>>>& ruleset,unordered_map<int,char>& hard_rules, int rule_num){
     if(hard_rules.find(rule_num) != hard_rules.end()){
-        // cout << hard_rules[rule_num] << '\n';
         return vector<string>{string(1,hard_rules[rule_num])};
     } else if (rule_num == 0){
         vector<string> results;
@@ -33,7 +27,6 @@ vector<string> valids(unordered_map<int,vector<vector<int>>>& ruleset,unordered_
         if(valid_subrules_combos.size() == 2){
             for(string combo_1 : valid_subrules_combos[0]){
                 for(string combo_2: valid_subrules_combos[1]){
-                    // cout << combo_1 << ',' << combo_2 << '\n';
                     results.push_back(combo_1 + combo_2);
                 }
             }
@@ -41,7 +34,6 @@ vector<string> valids(unordered_map<int,vector<vector<int>>>& ruleset,unordered_
             for(string combo_1 : valid_subrules_combos[0]){
                 for(string combo_2: valid_subrules_combos[1]){
                     for(string combo_3: valid_subrules_combos[2]){
-                    // cout << combo_1 << ',' << combo_2 << '\n';
                         results.push_back(combo_1 + combo_2 + combo_3);
                     }
                 }
@@ -67,7 +59,6 @@ vector<string> valids(unordered_map<int,vector<vector<int>>>& ruleset,unordered_
               vector<string> valid_combos_2 = valid_branch_combos[1];
               for (string combo_1 : valid_combos_1) {
                 for (string combo_2 : valid_combos_2) {
-                  // cout << combo_1 << ',' << combo_2 << '\n';
                   string combo;
                   combo = combo_1 + combo_2;
                   results.push_back(combo);
@@ -78,16 +69,6 @@ vector<string> valids(unordered_map<int,vector<vector<int>>>& ruleset,unordered_
         return results;
     }
 }
-
-// int countMatchInRegex(std::string s, std::string re)
-// {
-//     std::regex words_regex(re);SDASas
-//     auto words_begin = std::sregex_iterator(
-//         s.begin(), s.end(), words_regex);
-//     auto words_end = std::sregex_iterator();
-
-//     return std::distance(words_begin, words_end);
-// }
 
 int main(){
     string line;
