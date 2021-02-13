@@ -73,6 +73,41 @@ int main(){
     for (string not_allergen : not_allergens){
         cout << not_allergen << ",";
     }
+
     cout << '\n';
-    cout << "Number of appearances of non allergens: " << appearances << '\n';
+    cout << "Part 1: Number of appearances of non allergens: " << appearances << '\n';
+    bool no_dupes = false;
+    unordered_map<string,string> allergen_ingredient;
+    set<string> sorted_allergen;
+
+    while(!no_dupes){
+        bool check_no_dupes = true;
+        for (auto &possible_allergen : possible_allergen_words) {
+          // cout << "Allergen: " << possible_allergen.first << '\n';
+          if (possible_allergen.second.size() == 1) {
+              for(string ingredient : possible_allergen.second){
+                  // cout << "Confirmed allergen: " << possible_allergen.first << " ingredient: " << ingredient << '\n';
+                allergen_ingredient[possible_allergen.first] = ingredient;
+                sorted_allergen.insert(possible_allergen.first);
+              }
+          } else if (possible_allergen.second.size() > 1){
+              check_no_dupes = false;
+          }
+        }
+        for(auto &confirmed_allergen : allergen_ingredient){
+            possible_allergen_words.erase(confirmed_allergen.first);
+        }
+        for(auto &confirmed_allergen : allergen_ingredient){
+            for(auto &possible_allergen: possible_allergen_words){
+                possible_allergen.second.erase(confirmed_allergen.second);
+            }
+        }
+        no_dupes = check_no_dupes;
+    }
+    string canonical_list;
+    for (string allergen: sorted_allergen){
+        // cout << "Confirmed allergen: " << allergen << " ingredient: " << allergen_ingredient[allergen] << '\n';
+        canonical_list += allergen + ',';
+    }
+    cout << "Part2 - Canonical list: " << canonical_list.substr(0,canonical_list.length()-1)  << '\n';
 }
