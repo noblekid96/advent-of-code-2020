@@ -64,7 +64,7 @@ int main(){
             }
         }
         if(not_allergen){
-            cout << "Non allergen: " << ingredient_counts.first << " - Count: " << appearances << '\n';
+            cout << "Non allergen: " << ingredient_counts.first << " - Count: " << ingredient_counts.second << '\n';
             not_allergens.insert(ingredient_counts.first);
             appearances += ingredient_counts.second;
         }
